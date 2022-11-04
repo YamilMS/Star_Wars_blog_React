@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			itemFav: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -15,6 +16,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			
+			addFav: (info) => {
+				const store= getStore()
+				setStore({
+					itemFav: [...store.itemFav, info],
+				  });
+			},
+
+			removeFav: (info)=> {
+				const store= getStore()
+				setStore({
+					itemFav: store.itemFav.filter((item)=> item !== info ),
+				  });
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
